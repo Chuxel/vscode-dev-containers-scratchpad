@@ -7,6 +7,11 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install /tmp/gcm.deb \
     && apt-get clean -y && rm -rf /var/lib/apt/lists/* /tmp/gcm.deb 
 
+# Install Lazy Docker
+RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+    &&  curl -sSL https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash \
+    && apt-get clean -y && rm -rf /var/lib/apt/lists/*
+
 # Install needed packages and setup non-root user. Use a separate RUN statement to add your own dependencies.
 ARG USERNAME=node
 ARG ENABLE_NONROOT_DOCKER="true"
@@ -45,7 +50,4 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && curl -sSL https://go.microsoft.com/fwlink/?LinkID=760865 -o /tmp/code-insiders.deb \
     && apt-get -y install /tmp/code-insiders.deb \
     && apt-get clean -y && rm -rf /var/lib/apt/lists/* /tmp/code-insiders.deb
-
-# Install Lazy Docker
-RUN curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
 
