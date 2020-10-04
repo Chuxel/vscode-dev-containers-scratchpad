@@ -16,10 +16,11 @@ RUN bash /tmp/library-scripts/docker-debian.sh "true" "/var/run/docker-host.sock
     && apt-get clean -y && rm -rf /var/lib/apt/lists/* /tmp/library-scripts/
 
 # Install credential manager
+ENV GCM_CREDENTIAL_STORE=plaintext
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install --no-install-recommends pass \
     && curl -sSL https://github.com/microsoft/Git-Credential-Manager-Core/releases/download/v2.0.252-beta/gcmcore-linux_amd64.2.0.252.766.deb -o /tmp/gcm.deb \
     && apt-get -y install /tmp/gcm.deb \
+    && su node -c "git-credential-manager-core configure" \
     && apt-get clean -y && rm -rf /var/lib/apt/lists/* /tmp/gcm.deb 
 
 # Setting the ENTRYPOINT to docker-init.sh will configure non-root access to 
