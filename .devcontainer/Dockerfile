@@ -1,5 +1,12 @@
 FROM mcr.microsoft.com/vscode/devcontainers/javascript-node:0-12-buster
 
+# Install credential manager
+RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+    && apt-get -y install --no-install-recommends pass \
+    && curl -sSL https://github.com/microsoft/Git-Credential-Manager-Core/releases/download/v2.0.252-beta/gcmcore-linux_amd64.2.0.252.766.deb -o /tmp/gcm.deb \
+    && apt-get -y install /tmp/gcm.deb \
+    && apt-get clean -y && rm -rf /var/lib/apt/lists/* /tmp/gcm.deb 
+
 # Install needed packages and setup non-root user. Use a separate RUN statement to add your own dependencies.
 ARG USERNAME=node
 ARG ENABLE_NONROOT_DOCKER="true"
@@ -23,13 +30,6 @@ ENV DBUS_SESSION_BUS_ADDRESS="autolaunch:" \
 # The script will also execute CMD if you need to alter startup behaviors.
 ENTRYPOINT [ "/usr/local/share/docker-init.sh", "/usr/local/share/ssh-init.sh", "/usr/local/share/desktop-init.sh" ]
 CMD [ "sleep", "infinity" ]
-
-# Install credential manager
-RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install --no-install-recommends pass \
-    && curl -sSL https://github.com/microsoft/Git-Credential-Manager-Core/releases/download/v2.0.252-beta/gcmcore-linux_amd64.2.0.252.766.deb -o /tmp/gcm.deb \
-    && apt-get -y install /tmp/gcm.deb \
-    && apt-get clean -y && rm -rf /var/lib/apt/lists/* /tmp/gcm.deb 
 
 # Install Chrome
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
