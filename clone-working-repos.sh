@@ -1,12 +1,8 @@
 #!/bin/bash
 clone-repo()
 {
-    REPO=$1
     cd $(dirname $0)/..
-    mkdir -p ${REPO}
-    cd ${REPO}
-    git config credential.helper store
-    git clone https://github.com/microsoft/${REPO} .
+    git clone -c credential.helper=store https://github.com/microsoft/$1 
 }
 
 clone-repo vscode-dev-containers
