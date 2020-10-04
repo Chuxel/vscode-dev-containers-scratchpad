@@ -1,0 +1,23 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../vscode-dev-containers"
+		},
+		{
+			"name": "vscode-dev-containers build",
+			"path": "../vscode-dev-containers/build"
+		},
+		{
+			"name": "containers extension",
+			"path": "../vscode-remote-containers"
+		},
+		{
+			"name": "containers extension regression",
+			"path": "../vscode-remote-containers/test/dev-containers"
+		},
+	],
+	"settings": {}
+}

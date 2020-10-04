@@ -1,0 +1,26 @@
+{
+    "dockerFile": "Dockerfile",
+    "mounts": [ "source=/var/run/docker.sock,target=/var/run/docker-host.sock,type=bind" ],
+	// "initializeCommand": "sudo mkdir -p /var/lib/docker/vsonlinemount/workspace /home/vscode && test -d /home/vscode/workspace || sudo ln -s /var/lib/docker/vsonlinemount/workspace /home/vscode/workspace",
+	// container fs: /var/lib/docker/overlay2/6d00d6215fd056cf873fb70453e3b73abf37727a6b71184ddd64ab8b07cd5f0a/merged
+	// Set *default* container specific settings.json values on container create.
+	"settings": { 
+		"terminal.integrated.shell.linux": "/bin/bash"
+	},
+	"runArgs": ["--init", "--security-opt", "seccomp=unconfined", "--ipc=host"],
+
+	// Add the IDs of extensions you want installed when the container is created.
+	"extensions": [
+		"ms-azuretools.vscode-docker"
+	],
+	
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	"forwardPorts": [2222, 6080, 5901],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "docker --version",
+
+	// Uncomment the next two lines to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
+	"overrideCommand": false,
+	"remoteUser": "node"
+}
