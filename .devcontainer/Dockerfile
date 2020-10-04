@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/vscode/devcontainers/repos/microsoft/vscode:latest
 
 # Install VS Code Insiders
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && sed -i -E 's/.*Start Code - OSS.*/    [exec] (VS Code) { /usr/bin/code\* } <>/' /home/node/.fluxbox/menu \
+    && sed -i -E 's/.*Start Code - OSS.*/    [exec] (VS Code Insiders) { \/usr\/bin\/code-insiders } <>/' /home/node/.fluxbox/menu \
     && curl -sSL https://go.microsoft.com/fwlink/?LinkID=760865 -o /tmp/code-insiders.deb \
     && apt-get -y install /tmp/code-insiders.deb \
     && apt-get clean -y && rm -rf /var/lib/apt/lists/* /tmp/code-insiders.deb
@@ -10,14 +10,10 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 # Install needed packages and setup non-root user. Use a separate RUN statement to add your own dependencies.
 COPY library-scripts/*.sh /tmp/library-scripts/
 RUN bash /tmp/library-scripts/docker-debian.sh "true" "/var/run/docker-host.sock" "/var/run/docker.sock" "node" \
+    && curl -sSL https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash \
     && bash /tmp/library-scripts/sshd-debian.sh "2222" "node" "false" "skip" \
     && bash /tmp/library-scripts/azcli-debian.sh \
     && apt-get clean -y && rm -rf /var/lib/apt/lists/* /tmp/library-scripts/
-
-# Install Lazy Docker
-RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && curl -sSL https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash \
-    && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
 # Install credential manager
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
