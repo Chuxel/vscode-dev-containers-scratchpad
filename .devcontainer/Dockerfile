@@ -20,7 +20,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
         && /usr/bin/code-insiders --install-extension streetsidesoftware.code-spell-checker \
         && /usr/bin/code-insiders --install-extension chrisdias.vscode-opennewinstance \
         && /usr/bin/code-insiders --install-extension mads-hartmann.bash-ide-vscode \
-        && /usr/bin/code-insiders --install-extension rogalmic.bash-debug" \
+        && /usr/bin/code-insiders --install-extension rogalmic.bash-debug" 2>&1 \
     && apt-get clean -y && rm -rf /var/lib/apt/lists/* /tmp/code-insiders.deb
 
 # Install Chrome
