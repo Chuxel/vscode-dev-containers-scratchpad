@@ -1,8 +1,7 @@
 {
     "dockerFile": "Dockerfile",
-    "mounts": [ "source=/var/run/docker.sock,target=/var/run/docker-host.sock,type=bind" ],
-	// "initializeCommand": "sudo mkdir -p /var/lib/docker/vsonlinemount/workspace /home/vscode && test -d /home/vscode/workspace || sudo ln -s /var/lib/docker/vsonlinemount/workspace /home/vscode/workspace",
-	// container fs: /var/lib/docker/overlay2/6d00d6215fd056cf873fb70453e3b73abf37727a6b71184ddd64ab8b07cd5f0a/merged
+	"mounts": [ "source=/var/run/docker.sock,target=/var/run/docker-host.sock,type=bind" ],
+
 	// Set *default* container specific settings.json values on container create.
 	"settings": { 
 		"terminal.integrated.shell.linux": "/bin/bash"
