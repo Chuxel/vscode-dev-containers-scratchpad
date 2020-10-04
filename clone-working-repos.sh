@@ -1,7 +1,8 @@
 #!/bin/bash
+WORKSPACES="$(cd $(dirname $0)/.. && pwd)"
 clone-repo()
 {
-    cd $(dirname $0)/..
+    cd "${WORKSPACES}"
     if [ ! -d "$1" ]; then
         git clone -c credential.helper=store https://github.com/microsoft/$1 
     else 
