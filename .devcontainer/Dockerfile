@@ -1,14 +1,10 @@
 FROM mcr.microsoft.com/vscode/devcontainers/repos/microsoft/vscode:latest
 
 # Install needed packages and setup non-root user. Use a separate RUN statement to add your own dependencies.
-ARG USERNAME=node
-ARG ENABLE_NONROOT_DOCKER="true"
-ARG SOURCE_SOCKET=/var/run/docker-host.sock
-ARG TARGET_SOCKET=/var/run/docker.sock
 COPY library-scripts/*.sh /tmp/library-scripts/
-RUN && sed -i -E 's/.*Start Code - OSS.*/    [exec] (VS Code) { /usr/bin/code* } <>/' /home/node/.fluxbox/menu \
-    && bash /tmp/library-scripts/docker-debian.sh "${ENABLE_NONROOT_DOCKER}" "${SOURCE_SOCKET}" "${TARGET_SOCKET}" "${USERNAME}" \
-    && bash /tmp/library-scripts/sshd-debian.sh "2222" "${USERNAME}" "false" "skip" \
+RUN sed -i -E 's/.*Start Code - OSS.*/    [exec] (VS Code) { /usr/bin/code* } <>/' /home/node/.fluxbox/menu \
+    && bash /tmp/library-scripts/docker-debian.sh "true" "/var/run/docker-host.sock" "/var/run/docker.sock" "node" \
+    && bash /tmp/library-scripts/sshd-debian.sh "2222" "node" "false" "skip" \
     && bash /tmp/library-scripts/azcli-debian.sh \
     && apt-get clean -y && rm -rf /var/lib/apt/lists/* /tmp/library-scripts/
 
