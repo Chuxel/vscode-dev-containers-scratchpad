@@ -14,7 +14,7 @@ VM_HOST_WORKSPACE_PATH=/vm-host/$WORKSPACE_PATH_ON_HOST
 
 echo -e "Workspace path in container: ${WORKSPACE_PATH_IN_CONTAINER}\nWorkspace path on host: ${WORKSPACE_PATH_ON_HOST}"
 docker run --rm -v /:/vm-host alpine sh -c "\
-    if [ -d "${VM_CONTAINER_WORKSPACE_PATH}" ]; then echo \"${WORKSPACE_PATH_IN_CONTAINER} already exists on host. Aborting.\" && return 0; fi
+    if [ -L "${VM_CONTAINER_WORKSPACE_PATH}" ]; then echo \"${WORKSPACE_PATH_IN_CONTAINER} already exists on host. Aborting.\" && return 0; fi
     apk add coreutils > /dev/null \
     && mkdir -p $VM_CONTAINER_WORKSPACE_BASE_FOLDER \
     && cd $VM_CONTAINER_WORKSPACE_BASE_FOLDER \
