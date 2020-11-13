@@ -1,5 +1,7 @@
 {
-    "dockerFile": "Dockerfile",
+    //"dockerFile": "Dockerfile",
+	"image": "ghcr.io/chuxel-com/vscode-dev-containers-scratchpad:latest",
+	
 	"mounts": [ "source=/var/run/docker.sock,target=/var/run/docker-host.sock,type=bind" ],
 
 	// Set *default* container specific settings.json values on container create.

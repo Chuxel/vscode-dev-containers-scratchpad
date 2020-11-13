@@ -1,0 +1,37 @@
+ame: Generation Dev Container Base Image
+
+on:
+  push:
+    branches:
+      - 'devcontainer-test'
+      - 'main'
+    paths:
+      - '.devcontainer/base.Dockerfile'
+      - '.devcontainer/library-scripts/**/*'
+
+jobs:
+  devcontainer:
+    name: Generate base image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v2
+
+      - name: Build and push dev container base image
+        id: build_and_push
+        run: |
+          set -e
+          CONTAINER_IMAGE_REGISTRY=ghcr.io
+          REPOSITORY_PATH=chuxel-com/vscode-dev-containers-scratchpad
+          IMAGE_REPOSITORY="${CONTAINER_IMAGE_REGISTRY}/${REPOSITORY_PATH}" 
+          echo "${{ secrets.GHCR_PAT }}" | docker login ${CONTAINER_IMAGE_REGISTRY} -u "${{ secrets.GHCR_USER }}" --password-stdin 
+          cd .devcontainer
+          BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+          BRANCH_TAG="base-${BRANCH//\//-}"
+          docker build -t "${IMAGE_REPOSITORY}:${BRANCH_TAG}" -f "base.Dockerfile" .
+          docker push "${IMAGE_REPOSITORY}:${BRANCH_TAG}"
+          if [ "${BRANCH}" = "master" ] ||  [ "${BRANCH}" = "main" ]; then
+            docker tag "${IMAGE_REPOSITORY}:${BRANCH_TAG}" "${IMAGE_REPOSITORY}:latest"
+            docker push "${IMAGE_REPOSITORY}:latest"
+          fi
