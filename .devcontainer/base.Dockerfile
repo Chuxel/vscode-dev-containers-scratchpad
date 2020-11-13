@@ -38,4 +38,3 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 ENTRYPOINT [ "/usr/local/share/docker-init.sh", "/usr/local/share/ssh-init.sh", "/usr/local/share/desktop-init.sh" ]
 CMD [ "sleep", "infinity" ]
 
-
