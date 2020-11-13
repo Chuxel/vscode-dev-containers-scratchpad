@@ -10,5 +10,7 @@ clone-repo()
     fi
 }
 
+sudo sed -i -E 's/helper =.*//' /etc/gitconfig
+
 clone-repo vscode-dev-containers
 clone-repo vscode-remote-containers
