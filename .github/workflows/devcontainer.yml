@@ -1,4 +1,4 @@
-ame: Generation Dev Container Base Image
+name: Generation Dev Container Base Image
 
 on:
   push:
