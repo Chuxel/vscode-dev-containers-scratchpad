@@ -20,7 +20,7 @@
 	"forwardPorts": [2222, 6080, 5901],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "docker --version",
+	"postCreateCommand": "bash clone-working-repos.sh",
 
 	// Uncomment the next two lines to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
 	"overrideCommand": false,
