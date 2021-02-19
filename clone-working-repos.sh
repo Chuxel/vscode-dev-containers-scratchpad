@@ -16,3 +16,4 @@ git config --global credential.helper '!f() { sleep 1; echo "username=${GH_USER}
 
 clone-repo vscode-dev-containers
 clone-repo vscode-remote-containers
+ln -s "${WORKSPACES}/vscode-dev-containers" "${WORKSPACES}/vscode-remote-containers/test/dev-containers/repos"
