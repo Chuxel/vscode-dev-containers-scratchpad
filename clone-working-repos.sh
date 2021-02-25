@@ -4,7 +4,6 @@ clone-repo()
 {
     cd "${WORKSPACES}"
     if [ ! -d "$1" ]; then
-        #git clone -c credential.helper=store https://github.com/microsoft/$1 
         git clone https://github.com/microsoft/$1 
     else 
         echo "Already cloned $1"
