@@ -3,10 +3,10 @@ FROM mcr.microsoft.com/vscode/devcontainers/repos/microsoft/vscode:dev
 # Install needed packages and setup non-root user. Use a separate RUN statement to add your own dependencies.
 COPY library-scripts/*.sh /tmp/library-scripts/
 RUN /tmp/library-scripts/docker-in-docker-debian.sh "true" "node" "true" \
-    #bash /tmp/library-scripts/docker-debian.sh "true" "/var/run/docker-host.sock" "/var/run/docker.sock" "node" \
     # && curl -sSL https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash \
     && bash /tmp/library-scripts/sshd-debian.sh "2222" "node" "false" "skip" \
     && bash /tmp/library-scripts/azcli-debian.sh \
+    && bash /tmp/library-scripts/github-debian.sh \
     && apt-get clean -y && rm -rf /var/lib/apt/lists/* /tmp/library-scripts/
 
 # Install VS Code Insiders

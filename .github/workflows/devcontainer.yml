@@ -1,6 +1,8 @@
 name: Generation Dev Container Base Image
 
 on:
+  schedule:
+    - cron: '0 0 1 * *'
   push:
     branches:
       - 'devcontainer-test'
