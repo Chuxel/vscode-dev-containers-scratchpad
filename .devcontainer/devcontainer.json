@@ -1,6 +1,6 @@
 {
     // "dockerFile": "base.Dockerfile",
-	"image": "ghcr.io/chuxel-com/vscode-dev-containers-scratchpad:latest",
+	"image": "ghcr.io/chuxel/vscode-dev-containers-scratchpad:latest",
 	
 	// Set *default* container specific settings.json values on container create.
 	"settings": { 
