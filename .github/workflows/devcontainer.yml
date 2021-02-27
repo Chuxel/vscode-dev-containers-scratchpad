@@ -23,7 +23,7 @@ jobs:
         run: |
           set -e
           CONTAINER_IMAGE_REGISTRY=ghcr.io
-          REPOSITORY_PATH=chuxel-com/vscode-dev-containers-scratchpad
+          REPOSITORY_PATH=chuxel/vscode-dev-containers-scratchpad
           IMAGE_REPOSITORY="${CONTAINER_IMAGE_REGISTRY}/${REPOSITORY_PATH}" 
           echo "${{ secrets.GHCR_PAT }}" | docker login ${CONTAINER_IMAGE_REGISTRY} -u "${{ secrets.GHCR_USER }}" --password-stdin 
           cd .devcontainer
