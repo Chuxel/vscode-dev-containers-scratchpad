@@ -9,6 +9,16 @@ RUN /tmp/library-scripts/docker-in-docker-debian.sh "true" "node" "true" \
     && bash /tmp/library-scripts/github-debian.sh \
     && apt-get clean -y && rm -rf /var/lib/apt/lists/* /tmp/library-scripts/
 
+# Install oras
+ARG ORAS_VERSION=0.10.0
+ARG ORAS_SHA256=f621038a46ee445d7cc0deb079e2e3a2419e76b35fb46a0e2a404bda5d9f6b15
+RUN curl -LsSO https://github.com/deislabs/oras/releases/download/v${ORAS_VERSION}/oras_${ORAS_VERSION}_linux_amd64.tar.gz \
+    && echo "${ORAS_SHA256} *oras_${ORAS_VERSION}_linux_amd64.tar.gz" | sha256sum -c - \
+    && mkdir -p /tmp/oras-install/ \
+    && tar -zxf oras_${ORAS_VERSION}_linux_amd64.tar.gz -C /tmp/oras-install/ \
+    && mv /tmp/oras-install/oras /usr/local/bin/ \
+    && rm -rf oras_${ORAS_VERSION}_linux_amd64.tar.gz /tmp/oras-install/
+
 # Install VS Code Insiders
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && sed -i -E 's/.*Start Code - OSS.*/    [exec] (VS Code Insiders) { \/usr\/bin\/code-insiders } <>/' /home/node/.fluxbox/menu \
