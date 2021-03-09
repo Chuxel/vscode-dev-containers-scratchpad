@@ -11,13 +11,36 @@
 			"path": "../vscode-dev-containers/build"
 		},
 		{
-			"name": "containers extension",
+			"name": "vscode-dev-containers regression",
+			"path": "../vscode-remote-containers/test/dev-containers"
+		},
+		{
 			"path": "../vscode-remote-containers"
 		},
 		{
-			"name": "containers extension regression",
-			"path": "../vscode-remote-containers/test/dev-containers"
+			"path": "../vscode-remote-try-node"
 		},
+		{
+			"path": "../vscode-remote-try-python"
+		},
+		{
+			"path": "../vscode-remote-try-go"
+		},
+		{
+			"path": "../vscode-remote-try-java"
+		},
+		{
+			"path": "../vscode-remote-try-dotnetcore"
+		},
+		{
+			"path": "../vscode-remote-try-rust"
+		},
+		{
+			"path": "../vscode-remote-try-cpp"
+		},
+		{
+			"path": "../vscode-remote-try-php"
+		}
 	],
 	"settings": {}
 }
