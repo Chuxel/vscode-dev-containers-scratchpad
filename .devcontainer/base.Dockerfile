@@ -22,8 +22,8 @@ RUN curl -LsSO https://github.com/deislabs/oras/releases/download/v${ORAS_VERSIO
 # Install VS Code Insiders
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && sed -i -E 's/.*Start Code - OSS.*/    [exec] (VS Code) { \/usr\/bin\/code} <>\n    [exec] (VS Code Insiders) { \/usr\/bin\/code-insiders } <>/' /home/node/.fluxbox/menu \
-    && curl -sSL https://go.microsoft.com/fwlink/?LinkID=760865 -o /tmp/code-insiders.deb \
-    && curl -sSL https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64 -o /tmp/code.deb \
+    && curl -sSL 'https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64' -o /tmp/code.deb \
+    && curl -sSL 'https://go.microsoft.com/fwlink/?LinkID=760865' -o /tmp/code-insiders.deb \
     && apt-get -y install /tmp/code.deb \
     && apt-get -y install /tmp/code-insiders.deb \
     && su node -c "\
