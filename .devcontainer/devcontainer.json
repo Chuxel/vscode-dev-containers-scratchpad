@@ -13,9 +13,8 @@
 		"ms-azuretools.vscode-docker",
 		"dbaeumer.vscode-eslint",
 		"rogalmic.bash-debug",
+		"mads-hartmann.bash-ide-vscode",
 		"streetsidesoftware.code-spell-checker",
-		"davidanson.vscode-markdownlint",
-		"gruntfuggly.todo-tree",
 		"mutantdino.resourcemonitor",
 		"bierner.github-markdown-preview"
 	],

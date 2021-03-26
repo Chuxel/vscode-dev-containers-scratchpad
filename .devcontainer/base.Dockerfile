@@ -21,19 +21,28 @@ RUN curl -LsSO https://github.com/deislabs/oras/releases/download/v${ORAS_VERSIO
 
 # Install VS Code Insiders
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && sed -i -E 's/.*Start Code - OSS.*/    [exec] (VS Code Insiders) { \/usr\/bin\/code-insiders } <>/' /home/node/.fluxbox/menu \
+    && sed -i -E 's/.*Start Code - OSS.*/    [exec] (VS Code) { \/usr\/bin\/code} <>\n    [exec] (VS Code Insiders) { \/usr\/bin\/code-insiders } <>/' /home/node/.fluxbox/menu \
     && curl -sSL https://go.microsoft.com/fwlink/?LinkID=760865 -o /tmp/code-insiders.deb \
+    && curl -sSL https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64 -o /tmp/code.deb \
+    && apt-get -y install /tmp/code.deb \
     && apt-get -y install /tmp/code-insiders.deb \
     && su node -c "\
         export DONT_PROMPT_WSL_INSTALL=true \
         && /usr/bin/code-insiders --install-extension ms-vscode-remote.remote-containers \
         && /usr/bin/code-insiders --install-extension ms-azuretools.vscode-docker \
-        && /usr/bin/code-insiders --install-extension bierner.github-markdown-preview \
         && /usr/bin/code-insiders --install-extension streetsidesoftware.code-spell-checker \
         && /usr/bin/code-insiders --install-extension chrisdias.vscode-opennewinstance \
         && /usr/bin/code-insiders --install-extension mads-hartmann.bash-ide-vscode \
         && /usr/bin/code-insiders --install-extension rogalmic.bash-debug" 2>&1 \
-    && apt-get clean -y && rm -rf /var/lib/apt/lists/* /tmp/code-insiders.deb
+    && su node -c "\
+        export DONT_PROMPT_WSL_INSTALL=true \
+        && /usr/bin/code --install-extension ms-vscode-remote.remote-containers \
+        && /usr/bin/code --install-extension ms-azuretools.vscode-docker \
+        && /usr/bin/code --install-extension streetsidesoftware.code-spell-checker \
+        && /usr/bin/code --install-extension chrisdias.vscode-opennewinstance \
+        && /usr/bin/code --install-extension mads-hartmann.bash-ide-vscode \
+        && /usr/bin/code --install-extension rogalmic.bash-debug" 2>&1 \
+    && apt-get clean -y && rm -rf /var/lib/apt/lists/* /tmp/code-insiders.deb /tmp/code.deb
 
 # Install Chrome
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
