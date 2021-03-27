@@ -6,8 +6,7 @@
 	"settings": { 
 		"terminal.integrated.shell.linux": "/bin/bash"
 	},
-	"runArgs": ["--init", "--security-opt", "seccomp=unconfined", "--ipc=host", "--privileged"],
-	"mounts": [ "source=/var/run/docker.sock,target=/var/run/docker-host.sock,type=bind" ],
+	"runArgs": ["--init", "--security-opt", "seccomp=unconfined", "--ipc=host", "--privileged", "-v", "/var/run/docker.sock:/var/run/docker-host.sock"],
 
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
