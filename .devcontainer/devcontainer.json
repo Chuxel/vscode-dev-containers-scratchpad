@@ -4,7 +4,7 @@
 	
 	// Set *default* container specific settings.json values on container create.
 	"settings": { 
-		"terminal.integrated.shell.linux": "/bin/bash"
+		"terminal.integrated.shell.linux": "/bin/zsh"
 	},
 	"runArgs": ["--init", "--security-opt", "seccomp=unconfined", "--ipc=host", "--privileged", "-v", "/var/run/docker.sock:/var/run/docker-host.sock"],
 
