@@ -1,6 +1,7 @@
 name: Generation Dev Container Base Image
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: '0 0 1 * *'
   push:
