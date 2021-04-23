@@ -9,6 +9,7 @@ on:
       - 'main'
     paths:
       - '.devcontainer/base.Dockerfile'
+      - '.devcontainer/*.sh'
       - '.devcontainer/library-scripts/**/*'
 
 jobs:
