@@ -1,9 +1,6 @@
 {
 	"folders": [
 		{
-			"path": "."
-		},
-		{
 			"path": "../vscode-dev-containers"
 		},
 		{
@@ -16,6 +13,9 @@
 		},
 		{
 			"path": "../vscode-remote-containers"
+		},
+		{
+			"path": "."
 		},
 		{
 			"path": "../vscode-remote-try-node"
