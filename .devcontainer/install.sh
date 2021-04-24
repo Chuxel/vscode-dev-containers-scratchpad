@@ -33,6 +33,8 @@ install-code() {
 # Install VS Code Insiders
 install-code "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64" "false"
 install-code "https://go.microsoft.com/fwlink/?LinkID=760865" "true"
+sed -i -E 's/.*Start Code - OSS.*/    [exec] (VS Code) { \/usr\/bin\/code} <>\n    [exec] (VS Code Insiders) { \/usr\/bin\/code-insiders } <>/' /home/node/.fluxbox/menu
+
 
 # Install Chrome
 curl -sSL "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb" -o /tmp/chrome.deb
