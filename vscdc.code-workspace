@@ -8,11 +8,11 @@
 			"path": "../vscode-dev-containers/build"
 		},
 		{
-			"name": "vscode-dev-containers regression",
-			"path": "../vscode-remote-containers/test/dev-containers"
+			"path": "../vscode-remote-containers"
 		},
 		{
-			"path": "../vscode-remote-containers"
+			"name": "vscode-dev-containers regression",
+			"path": "../vscode-remote-containers/test/dev-containers"
 		},
 		{
 			"path": "../vscode-remote-try-node"
