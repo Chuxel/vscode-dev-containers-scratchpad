@@ -15,9 +15,6 @@
 			"path": "../vscode-remote-containers"
 		},
 		{
-			"path": "."
-		},
-		{
 			"path": "../vscode-remote-try-node"
 		},
 		{
@@ -40,6 +37,9 @@
 		},
 		{
 			"path": "../vscode-remote-try-php"
+		},
+		{
+			"path": "."
 		}
 	],
 	"settings": {}
