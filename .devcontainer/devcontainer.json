@@ -1,12 +1,10 @@
 {
     // "dockerFile": "base.Dockerfile",
 	"image": "ghcr.io/chuxel/vscode-dev-containers-scratchpad:latest",
+	"runArgs": ["--init", "--security-opt", "seccomp=unconfined", "--ipc=host", "--privileged", "-v", "/var/run/docker.sock:/var/run/docker-host.sock"],
 	
 	// Set *default* container specific settings.json values on container create.
-	"settings": { 
-		"terminal.integrated.shell.linux": "/bin/zsh"
-	},
-	"runArgs": ["--init", "--security-opt", "seccomp=unconfined", "--ipc=host", "--privileged", "-v", "/var/run/docker.sock:/var/run/docker-host.sock"],
+	"settings": {},
 
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
@@ -16,7 +14,8 @@
 		"mads-hartmann.bash-ide-vscode",
 		"streetsidesoftware.code-spell-checker",
 		"mutantdino.resourcemonitor",
-		"bierner.github-markdown-preview"
+		"bierner.github-markdown-preview",
+		"EditorConfig.EditorConfig"
 	],
 	
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
